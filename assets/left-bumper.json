@@ -1,0 +1,16 @@
+{ 
+    
+    "left_bumper": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   12.5, 14  ,  26.5, 2  ,  97.5, 140  ,  92, 159.5  ,  4, 158.5  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   26.5, 1  ,  26.5, 2  ,  12.5, 14  ]
+        }
+    ]
+}

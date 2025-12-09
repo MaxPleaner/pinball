@@ -1,0 +1,11 @@
+{ 
+    
+    "right_bumper": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   76, 0.5  ,  77, 0.5  ,  99.5, 117  ,  95.5, 157  ,  0, 158.5  ]
+        }
+    ]
+}

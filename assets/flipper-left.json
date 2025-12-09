@@ -1,0 +1,16 @@
+{ 
+    
+    "flipper-left": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   14, 7  ,  27, 7  ,  112, 40  ,  116, 73  ,  17, 33  ,  4, 17  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   116, 73  ,  112, 40  ,  128, 52  ,  128, 69  ]
+        }
+    ]
+}

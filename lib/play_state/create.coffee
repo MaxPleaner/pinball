@@ -88,6 +88,7 @@ module.exports = ->
 
     @monsters = [@cloister, @slobro, @kirby_eye, @kirby_eye_2]
     @active_monsters = new Set()
+    @target_monster_count = 2  # Default target count
     @monsters.forEach (monster) =>
         @make_static monster
         @turn_off_gravity monster

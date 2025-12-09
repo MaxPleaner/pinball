@@ -70,3 +70,64 @@ module.exports = Util =
     contact_material.frictionRelaxation ||= 3
     contact_material.surfaceVelocity    ||= 0
     contact_material
+
+  create_monster_instance: (template_name) ->
+    # Get the original monster to use as template
+    template = @[template_name]
+    return null unless template
+
+    # Create new sprite with same key
+    monster = @add_p2_sprite @hidden_x, @hidden_y, template.key
+    @make_static monster
+    @turn_off_gravity monster
+
+    # Copy animation
+    monster.animations.add("walk")
+    monster.animations.play "walk", 10, true
+
+    # Set collision group
+    @set_sprite_collision_group monster, @collision_groups.monsters
+
+    # Connect collision with ball (use closure to capture monster)
+    monster.body.collides @collision_groups.ball, =>
+      monster.body.x = @hidden_x
+      monster.body.y = @hidden_y
+      monster.body.velocity.x = 0
+      monster.body.velocity.y = 0
+      @active_monsters.delete(monster)
+      # Only respawn if we're below the target count
+      if @active_monsters.size < (@target_monster_count || 0)
+        @spawn_monster()
+
+    monster
+
+  spawn_monster: ->
+    monsterTemplates = ['cloister', 'slobro', 'kirby_eye', 'kirby_eye_2']
+
+    # First try to use available pre-existing monsters
+    available = @monsters.filter (m) => !@active_monsters.has(m)
+
+    if available.length > 0
+      # Use an existing unused monster
+      monster = available[Math.floor(Math.random() * available.length)]
+    else
+      # Create a new monster instance
+      templateName = monsterTemplates[Math.floor(Math.random() * monsterTemplates.length)]
+      monster = @create_monster_instance(templateName)
+      return null unless monster
+
+    x = Math.floor(Math.random() * (@game_width - 95)) + 15
+    y = Math.floor(Math.random() * (@midpoint_y - 95)) + 15
+
+    monster.body.x = x
+    monster.body.y = y
+    facing_right = Math.random() < 0.5
+    monster.body.velocity.x = @monster_velocity * (if facing_right then 1 else -1)
+
+    if !facing_right && monster.scale.x > 0
+      monster.scale.x *= -1
+    else if facing_right && monster.scale.x < 0
+      monster.scale.x *= -1
+
+    @active_monsters.add(monster)
+    monster

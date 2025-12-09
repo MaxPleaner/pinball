@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: npm run deploy
         env:
-          BASE_PATH: /PhaserPinball
+          BASE_PATH: /pinball
 
       - name: Prepare deployment files
         run: |

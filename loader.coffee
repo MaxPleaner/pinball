@@ -9,3 +9,6 @@ window._          = require 'underscore'
 window.DebugMode  = false
 
 window.Game       = require('./lib/game_loader').start()
+
+# Setup UI controls
+require('./lib/controls')()

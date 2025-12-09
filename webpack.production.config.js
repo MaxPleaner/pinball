@@ -9,6 +9,7 @@
 //   },
 
 var path = require('path')
+var webpack = require('webpack')
 
 var phaserModule = path.join(__dirname, '/node_modules/phaser/');
 var phaser = path.join(phaserModule, 'build/custom/phaser-split.js'),
@@ -34,5 +35,10 @@ module.exports = {
       'pixi.js': pixi,
       'p2': p2
     }
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      __BASE_PATH__: JSON.stringify(process.env.BASE_PATH || '')
+    })
+  ]
 }
